@@ -9,7 +9,7 @@ class Welcome extends Application {
 	 * Maps to the following URL
 	 * 		http://example.com/index.php/welcome
 	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
+	 * 		http://example.scom/index.php/welcome/index
 	 *	- or -
 	 * Since this controller is set as the default controller in
 	 * config/routes.php, it's displayed at http://example.com/
@@ -21,7 +21,24 @@ class Welcome extends Application {
 	public function index()
 	{
 		//$this->load->view('welcome');
-               $this->data['pagebody'] = 'welcome';
-               $this->render();
+              $pix = $this->images->newest();
+
+        foreach ($pix as $picture)
+                $cells[] = $this->parser->parse('_cell', (array) $picture, true);
+
+        $this->load->library('table');
+        $parms = array(
+            'table_open' => '<table class="gallery">',
+            'cell_start' => '<td class="oneimage">',
+            'cell_alt_start' => '<td class="oneimage">'
+        );
+
+        $this->table->set_template($parms);
+
+        $rows = $this->table->make_columns($cells, 3);
+        $this->data['thetable'] = $this->table->generate($rows);
+
+        $this->data['pagebody'] = 'welcome';
+        $this->render();
 	}
 }

@@ -126,8 +126,7 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array();
+//$autoload['model'] = array();
 $autoload['libraries'] = array('database', 'parser');
-$autoload['libraries'] = array('parser');
 $autoload['helper'] = array('common', 'url');
 $autoload['model'] = array('images');
