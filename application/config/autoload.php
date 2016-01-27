@@ -120,10 +120,12 @@ $autoload['language'] = array();
 | Prototype:
 |
 |	$autoload['model'] = array('first_model', 'second_model');
-|
+|6
 | You can also supply an alternative model name to be assigned
 | in the controller:
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
 $autoload['model'] = array();
+$autoload['libraries'] = array('database', 'parser');
+$autoload['helper'] = array('common', 'url');
